@@ -20,8 +20,8 @@ define iis_logfiles(
     provider => powershell,
   }
   exec { 'Update Site Default LogPath' :
-    command => "\$xml = ${p_xml}; \$xml.${site_default} = '${log_directory}'; \$xml.save('${config_path}')",
-    onlyif  => "\$xml = ${p_xml}; if ((\$xml.${site_default}) -like '${log_directory}') { exit 1 }",
+    command  => "\$xml = ${p_xml}; \$xml.${site_default} = '${log_directory}'; \$xml.save('${config_path}')",
+    onlyif   => "\$xml = ${p_xml}; if ((\$xml.${site_default}) -like '${log_directory}') { exit 1 }",
     require  => File[$log_directory],
     provider => powershell,
   }
